@@ -1,7 +1,4 @@
 #include "Attempt1.hpp"
-#include <iostream>
-#include <vector>
-#include <fstream>
 
 #include<bits/stdc++.h>
 
@@ -14,10 +11,8 @@ void printRecommendations(vector<string> recs){
 	}
 }
 
-
-int main(int argv, char** argc){
+vector<string> getMenu(string fileName){
     vector<string> options;
-    string fileName = "orderOptions.txt";
 
     ifstream input;
     input.open(fileName);
@@ -28,13 +23,35 @@ int main(int argv, char** argc){
         options.push_back(current);
     }
 
+    return options;
+}
+
+
+int main(int argv, char** argc){
+    string fileName = "words_alpha.txt";
+
+    vector<string> options;
+    options = getMenu(fileName);
+
     string userInput;
     vector<string> recs;
     cout << "Enter an order:" << endl;
     getline(cin, userInput);
 
-    cout << "Sorry, we don't have " + userInput + ", do you mean:" << endl;
+    //Attempt 1
+    cout << "Running Attempt 1" << endl;
+    auto start = std::chrono::high_resolution_clock::now();
     recs = Attempt1(options, userInput);
+    auto stop = std::chrono::high_resolution_clock::now();
 
-    printRecommendations(recs);
+    cout << "Number of recommended words: " << recs.size() << endl;
+    // cout << "Sorry, we don't have " + userInput + ", do you mean:" << endl;
+    // printRecommendations(recs);
+
+    cout << "Time to run: " << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << " milliseconds" << endl;
+
+    //DP Solution
+    
+
+    return 0;
 }
