@@ -3,9 +3,7 @@
 Overall, the goal of the project is to streamline the process of outputting a close match String based on the input.
 
 This idea as a whole formed when I worked on the project found [here](https://github.com/PostAPProject/BobaFridaysForm). 
-The team project in short involve the program compiling and streamlining the a boba ordering process. In this project,
-I worked on a feature where the program prints a list of closely matching menu items when the user enters 
-something not on the menu.
+We wanted to recommend close matches when a user typoed and tried to order something not on the menu.
 
 ## Attempt 1
 
@@ -30,4 +28,18 @@ Cons ☹️
    - Intended to limit the amount of common menu items like "Milk Tea" popping up as many menu items share the same words
    - Only counters one or two typos or errors, and only if the error is not exactly in the center of the input
    - Sometimes no suggested menu items are printed
+
+## Attempt 2
+
+Attempt 2 uses the min distance Leetcode problem that just tracks the number of edits (delete, replace, insert) to convert
+one string to another.
+
+We return the strings that require the least edits.
+
+Pros 😄
+ - It actually returns the correct answer if it exists
+
+Cons ☹️
+ - Runtime is somehow worse than Attempt 1
+ - If one of the options has low letter count, it is going to show up in the results regardless of the input
 
